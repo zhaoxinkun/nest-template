@@ -1,0 +1,7 @@
+thirdparty:
+  db:
+    host: "localhost"
+  port: 5984
+  dbName: "thirdparty"
+  apiKey: "abcdefg-123456"
+  endpoint: "https://api.example.com"

@@ -1,0 +1,7 @@
+# 使用 $ref 引用 custom.yaml 整个对象
+custom: {$ref: 'custom'}
+
+# 你也可以直接引用 custom 内部具体字段
+server:
+  port: ${custom.port}
+  dbHost: ${custom.db.host}

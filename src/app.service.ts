@@ -5,6 +5,8 @@ import config from 'config';
 export class AppService {
   getHello(): string {
     const dbPort = config.get('Customer.dbConfig.port');
+    // const apiKey = config.get('thirdparty.apiKey');
+    // const endpoint = config.get('thirdparty.endpoint');
     return `Hello World! DB Port: ${dbPort}`;
   }
 }
