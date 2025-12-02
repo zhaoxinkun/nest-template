@@ -1,6 +1,9 @@
 /*
 *
 * 这里是封装的全局异常过滤器
+*  1. 捕获所有异常
+*  2. 记录异常信息
+*  3. 返回异常信息
 * */
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';

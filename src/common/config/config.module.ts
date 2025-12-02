@@ -11,8 +11,10 @@ import { Module } from '@nestjs/common';
 import * as Joi from 'joi';
 import { ConfigModule as Config } from '@nestjs/config';
 
+// env文件路径读取
 const envFilePath = [`.env.${process.env.NODE_ENV || 'development.env'}`, '.env'];
 
+// 简单的校验
 const schema = Joi.object({
   NODE_ENV: Joi.string()
     .valid('development', 'production')

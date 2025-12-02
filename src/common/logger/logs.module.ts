@@ -13,6 +13,7 @@ import { consoleTransport, createDailyRotateTransport } from './createRotateTran
 // 这里就是导入配置winston日志的,详细的transports在另一个文件里
 @Module({
   imports: [
+    // 注册Winston
     WinstonModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
