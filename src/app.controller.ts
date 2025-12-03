@@ -1,11 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
-import { CacheService } from '@/cache/cache.service';
+import { Controller, Get, Post } from '@nestjs/common';
+import { CacheService } from '@/common/cache/cache.service';
+import { MailerService } from '@nestjs-modules/mailer';
+import { EmailService } from '@/common/email/email.service';
 
 
 @Controller()
 export class AppController {
   constructor(
     private cache: CacheService,
+    private readonly emailService: EmailService,
   ) {
 
   }
@@ -28,6 +31,11 @@ export class AppController {
     );
 
     return data;
+  }
+
+  @Get('email')
+  async testEmail() {
+    return await this.emailService.send();
   }
 
 }
