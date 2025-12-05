@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { AllExceptionFilter } from './common/filters/all-exception.filter';
+import { DataSource } from 'typeorm';
 
 
 async function bootstrap() {
@@ -33,6 +34,15 @@ async function bootstrap() {
   if (cors) {
     // 开启CORS
     app.enableCors();
+  }
+
+  const dataSource = app.get(DataSource);
+  try {
+    await dataSource.query('SELECT 1');
+    console.log('✅ Database connection verified successfully!');
+  } catch (error) {
+    console.error('❌ Database connection failed:', error);
+    process.exit(1);
   }
 
   await app.listen(port);
