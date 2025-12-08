@@ -18,9 +18,6 @@ export function buildConnectionOptions() {
     ...defaultConfig,
     ...envConfig,
   };
-  const config = { ...defaultConfig, ...envConfig };
-  console.log('config is ', config);
-
 
   return {
     type: connectionOptions['DB_TYPE'],
@@ -29,7 +26,7 @@ export function buildConnectionOptions() {
     username: connectionOptions['DB_USERNAME'],
     password: connectionOptions['DB_PASSWORD'],
     database: connectionOptions['DB_DATABASE'],
-    entities: [__dirname + '/../modules/**/*.entity.js'],
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: Boolean(connectionOptions['DB_SYNCHRONIZE']),
     autoLoadEntities: Boolean(connectionOptions['DB_AUTO_LOAD_ENTITIES']),
   } as TypeOrmModuleOptions;

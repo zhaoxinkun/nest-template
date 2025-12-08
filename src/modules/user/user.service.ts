@@ -10,6 +10,7 @@ import { UserDao } from '@/modules/user/dao/user.dao';
 export class UserService {
 
   constructor(
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
     private readonly userDao: UserDao,
   ) {
 
