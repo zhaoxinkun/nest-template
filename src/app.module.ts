@@ -5,7 +5,8 @@ import { LogsModule } from './common/logger/logs.module';
 import { CacheModule } from '@/common/cache/cache.module';
 import { RedisModule } from './redis/redis.module';
 import { EmailModule } from './common/email/email.module';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { UserModule } from './modules/user/user.module';
+import { TypeormModule } from './typeorm/typeorm.module';
 
 
 @Module({
@@ -15,16 +16,8 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
     CacheModule,
     RedisModule,
     EmailModule,
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'nest_typeorm',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-    } as TypeOrmModuleOptions),
+    UserModule,
+    TypeormModule,
   ],
   controllers: [AppController],
   providers: [],

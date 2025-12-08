@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { AllExceptionFilter } from './common/filters/all-exception.filter';
 import { DataSource } from 'typeorm';
+import { getDataSourceToken } from '@nestjs/typeorm';
 
 
 async function bootstrap() {
@@ -44,6 +45,8 @@ async function bootstrap() {
     console.error('❌ Database connection failed:', error);
     process.exit(1);
   }
+  const ds = app.get(getDataSourceToken());
+  console.log('Loaded entities:', ds.entityMetadatas.map(e => e.name));
 
   await app.listen(port);
 }
