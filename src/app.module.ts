@@ -7,7 +7,6 @@ import { RedisModule } from './redis/redis.module';
 import { EmailModule } from './common/email/email.module';
 import { UserModule } from './modules/user/user.module';
 import { TypeormModule } from './typeorm/typeorm.module';
-import { TenantModule } from './tenant/tenant.module';
 
 
 @Module({
@@ -19,7 +18,6 @@ import { TenantModule } from './tenant/tenant.module';
     EmailModule,
     UserModule,
     TypeormModule,
-    TenantModule,
   ],
   controllers: [AppController],
   providers: [],
