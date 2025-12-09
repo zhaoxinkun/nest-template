@@ -1,17 +1,22 @@
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, Scope } from '@nestjs/common';
 import { User } from '@/modules/user/entities/user.entity';
-import { Repository } from 'typeorm';
 import { CreateUserDto } from '@/modules/user/dto/create-user.dto';
+import { TenantConnectionService } from '@/database/tenant/tenant.connection.service';
 
+@Injectable({ scope: Scope.REQUEST })
 export class UserDao {
-  constructor(@InjectRepository(User) private readonly userRep: Repository<User>) {
+  constructor(
+    private readonly tenantConn: TenantConnectionService,
+  ) {
   }
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    return this.userRep.save(createUserDto);
+  async create(createUserDto: CreateUserDto) {
+    const repo = this.tenantConn.getRepository(User);
+    const user = repo.create(createUserDto);
+    return repo.save(user);
   }
 
-  async findAll(): Promise<User[]> {
-    return this.userRep.find();
+  async findAll() {
+    return this.tenantConn.getRepository(User).find();
   }
 }

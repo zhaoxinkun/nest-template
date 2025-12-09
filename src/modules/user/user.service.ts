@@ -1,16 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '@/modules/user/entities/user.entity';
-import { Repository } from 'typeorm';
 import { UserDao } from '@/modules/user/dao/user.dao';
 
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class UserService {
 
   constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
     private readonly userDao: UserDao,
   ) {
 

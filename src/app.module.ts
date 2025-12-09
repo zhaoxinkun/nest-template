@@ -6,7 +6,10 @@ import { CacheModule } from '@/common/cache/cache.module';
 import { RedisModule } from './redis/redis.module';
 import { EmailModule } from './common/email/email.module';
 import { UserModule } from './modules/user/user.module';
-import { TypeormModule } from './typeorm/typeorm.module';
+import { TypeormModule } from '@/database/typeorm/typeorm.module';
+import { PrismaService } from './database/prisma/prisma.service';
+import { PrismaModule } from './database/prisma/prisma.module';
+import { TenantModule } from './database/tenant/tenant.module';
 
 
 @Module({
@@ -18,9 +21,11 @@ import { TypeormModule } from './typeorm/typeorm.module';
     EmailModule,
     UserModule,
     TypeormModule,
+    PrismaModule,
+    TenantModule,
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [PrismaService],
 })
 export class AppModule {
 }
